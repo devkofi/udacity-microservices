@@ -1,0 +1,5 @@
+Delete Deployments
+
+kubectl get deployments --all-namespaces
+
+kubectl delete -n NAMESPACE deployment DEPLOYMENT
