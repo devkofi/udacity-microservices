@@ -1,3 +1,4 @@
 .env
 minikube-linux-amd64
 deployment.yaml
+_USECASE
