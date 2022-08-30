@@ -166,12 +166,14 @@ kubectl port-forward pod/udacity-microservices-5c544bc45d-wl6vl --address 127.0.
 #Pause and save cluster state
 minikube stop
 ```
+<br/>
 
 ### _Delete Cluster_
 ```bash
 #Delete kubernetes cluster 
 minikube delete
 ```
+<br/>
 
 ### _Deleting Deployments_
 ```bash
