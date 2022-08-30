@@ -1,4 +1,4 @@
 .env
 minikube-linux-amd64
-*deploy
+*_deployment.txt
 *_USECASE.txt
