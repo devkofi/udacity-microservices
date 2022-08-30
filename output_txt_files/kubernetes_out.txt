@@ -1,3 +1,7 @@
+=======================================
+TERMINAL OUTPUT FROM run_kubernetes.sh
+=======================================
+
 error: failed to create deployment: deployments.apps "udacity-microservices" already exists
 NAME                                    READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/udacity-microservices   1/1     1            1           45m
@@ -13,3 +17,14 @@ NAME                                         READY   STATUS    RESTARTS   AGE
 pod/udacity-microservices-5c544bc45d-wl6vl   1/1     Running   0          45m
 Forwarding from 127.0.0.1:8000 -> 80
 Handling connection for 8000
+
+=======================================
+TERMINAL OUTPUT FROM make_prediction.sh
+=======================================
+
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
