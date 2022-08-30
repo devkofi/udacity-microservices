@@ -1,12 +1,18 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/devkofi/udacity-microservices/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/devkofi/udacity-microservices/tree/master)
 
-## Project Overview
+---
+# PROJECT OVERVIEW
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+This project applies the skills you have acquired in the course to operationalize a Machine Learning Microservice API. 
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). 
 
-### Project Tasks
+This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+<br/><br/>
+
+---
+
+# PROJECT TASKS
 
 Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
 * Test your project code using linting
@@ -20,12 +26,23 @@ Your project goal is to operationalize this working, machine learning microservi
 You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
 
 **The final implementation of the project will showcase your abilities to operationalize production microservices.**
+<br/><br/>
 
 ---
+# FILES
+* Flask app :  `app.py`
+* Predict housing prices : `make_prediction.sh`
+* Installation Requirements : `requirements.txt`
+* Predict Housing Prices with docker : `run_docker.sh`
+* Predict Housing Prices with kubernetes : `run_kubernetes`
+* Upload Container to Dockerhub : `upload_docker.sh`
+<br/><br/>
 
-## Setup the Environment
+---
+# SETUP THE ENVIRONMENT
 
-* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
+### Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
+
 ```bash
 python3 -m pip install --user virtualenv
 # You should have Python 3.7 available in your host. 
@@ -34,17 +51,88 @@ python3 -m pip install --user virtualenv
 python3 -m virtualenv --python=<path-to-Python3.7> .devops
 source .devops/bin/activate
 ```
-* Run `make install` to install the necessary dependencies
+### Install Dependencies 
+```bash
+make install
+``` 
+<br/>
 
-### Running `app.py`
+---
+# RUNNING `app.py`
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+### Standalone:  
+```bash
+python app.py
+```
+### Run in Docker:  
+```bash
+./run_docker.sh
+```
+### Run in Kubernetes:  
+```bash
+./run_docker.sh
+```
+<br/>
 
-### Kubernetes Steps
+---
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+# KUBERNETES STEPS
+
+### Setup and Configure Docker locally
+```bash
+#Build docker image with tag-name "microservices"
+docker build --tag=microservices .
+
+#List all docker images
+docker image ls
+
+#Run app on port 8000
+docker run -p 127.0.0.1:8000:80 microservices
+```
+
+### Setup and Configure Kubernetes locally
+```bash
+#Download minikube from source using curl
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+#Install minikube into the bin directory
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+#Start a local cluster in kubernetes with minikube
+minikube start
+
+#Confirm local cluster running
+kubectl config view
+
+#Show Kubernetes dashboard
+minikube dashboard
+```
+
+### Load Image locally (Optional)
+```bash
+minikube image load microservices
+```
+
+### Create Flask app in Container
+```bash
+#Create a variable. Replace ID with user ID, Path with container path
+dockerpath=ID/path:tagname
+
+#Create a container from a docker image using path from above
+kubectl create deployment udacity-microservices --image=$dockerpath
+
+#Expose port 80 for HTTP requests
+kubectl expose deployment udacity-microservices --type=NodePort --port=80
+
+#Show services by udacity-microservices
+kubectl get services udacity-microservices
+
+#Start service using minikube
+minikube service udacity-microservices`
+```
+### Run via kubectl
+```bash
+
+#Run app and forward port from container on port 80 to the host on port 8000 
+kubectl port-forward service/udacity-microservices 8000:80
+```
