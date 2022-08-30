@@ -61,7 +61,49 @@ make install
 <br/>
 
 ---
+# INSTALL PYTHON 3.7 FROM SOURCE `(OPTIONAL)`
+
+<br/>
+
+### _Add Repository_:  
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa
+```
+<br/>
+
+### _Update_:  
+```bash
+sudo apt-get update
+```
+<br/>
+
+### _Install Python 3.7 with dependencies_:  
+```bash
+sudo apt-get install python3.7 python3.7-venv binfmt-support
+```
+<br/>
+
+### _Create Virtual Environment_:  
+```bash
+python3.7 -m venv ~/.test
+```
+<br/>
+
+### _Activate Virtual Environment_:  
+```bash
+#Activate using source
+source ~/.test/bin/activate
+
+#Activate using .
+. ~/.test/bin/activate
+```
+<br/>
+
+---
+
 # RUNNING `app.py`
+
+<br/>
 
 ### _Standalone_:  
 ```bash
