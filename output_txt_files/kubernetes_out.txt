@@ -1,1 +1,15 @@
-<paste log output from Kubernetes-mediated prediction, here>
+error: failed to create deployment: deployments.apps "udacity-microservices" already exists
+NAME                                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/udacity-microservices   1/1     1            1           45m
+
+NAME                                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/udacity-microservices-5c544bc45d   1         1         1       45m
+
+NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes              ClusterIP   10.96.0.1        <none>        443/TCP        100m
+service/udacity-microservices   NodePort    10.109.143.145   <none>        80:31878/TCP   45m
+
+NAME                                         READY   STATUS    RESTARTS   AGE
+pod/udacity-microservices-5c544bc45d-wl6vl   1/1     Running   0          45m
+Forwarding from 127.0.0.1:8000 -> 80
+Handling connection for 8000
