@@ -121,6 +121,7 @@ minikube dashboard
 ```bash
 minikube image load microservices
 ```
+<br/>
 
 ### _Create Flask app in Container_
 ```bash
