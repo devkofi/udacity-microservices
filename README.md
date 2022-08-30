@@ -132,7 +132,27 @@ minikube service udacity-microservices`
 ```
 ### Run via kubectl
 ```bash
-
 #Run app and forward port from container on port 80 to the host on port 8000 
 kubectl port-forward service/udacity-microservices 8000:80
+```
+
+### Stop minikube
+```bash
+#Pause and save cluster state
+minikube stop
+```
+
+### Delete Cluster
+```bash
+#Delete kubernetes cluster 
+minikube delete
+```
+
+### Deleting Deployments
+```bash
+#List all deployments
+kubectl get deployments --all-namespaces
+
+#Replace NAMESPACE and DEPLOYMENT using details from above
+kubectl delete -n NAMESPACE deployment DEPLOYMENT
 ```
