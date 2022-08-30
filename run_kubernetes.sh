@@ -11,16 +11,15 @@ dockerpath=dekofi/microservices:v1.0.0
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl create deploy udacity-microservices --image=$dockerpath
+kubectl create deployment udacity-microservices --image=$dockerpath
 
 # Step 3:
 # List kubernetes pods
-kubectl get deploy,rs,svc,pods
+kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward pod/udacity-microservices-5c544bc45d-wl6vl --address 127.0.0.1 8000:80
-
+kubectl port-forward deployment/udacity-microservices 8000:80
 
 #-------------------------- IMPLEMENTATION (ALTERNATIVE) -------------------------- #
 
