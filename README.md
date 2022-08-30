@@ -127,6 +127,9 @@ kubectl expose deployment udacity-microservices --type=NodePort --port=80
 #Show services by udacity-microservices
 kubectl get services udacity-microservices
 
+#Alternatively list using this command
+kubectl get deploy,rs,svc,pods
+
 #Start service using minikube
 minikube service udacity-microservices`
 ```
@@ -134,6 +137,15 @@ minikube service udacity-microservices`
 ```bash
 #Run app and forward port from container on port 80 to the host on port 8000 
 kubectl port-forward service/udacity-microservices 8000:80
+
+```
+
+### Run via kubectl (Alternative approach)
+```bash
+
+# Forward the container port to a host
+kubectl port-forward pod/udacity-microservices-5c544bc45d-wl6vl --address 127.0.0.1 8000:80
+
 ```
 
 ### Stop minikube
